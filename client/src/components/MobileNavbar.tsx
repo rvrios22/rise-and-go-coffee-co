@@ -6,7 +6,7 @@ function MobileNavbar() {
     <>
       <div>
         <Link to="/">
-        <img src="./rise_and_go_logo.webp" alt="Logo" height="100" />
+        <img src="./logo.webp" alt="Logo" height="100" />
         </Link>
       </div>
       <div>

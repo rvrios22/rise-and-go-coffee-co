@@ -6,7 +6,7 @@ function Navbar() {
     <>
       <div>
         <Link to="/">
-          <img src="./rise_and_go_logo.webp" alt="Company Logo" height="150" />
+          <img src="./logo.webp" alt="Company Logo" height="150" />
         </Link>
         <Link to="/about">ABOUT</Link>
         <Link to="/shop">SHOP COFFEES</Link>

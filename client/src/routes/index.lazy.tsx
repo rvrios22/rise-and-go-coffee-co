@@ -1,13 +1,19 @@
-import { createLazyFileRoute } from '@tanstack/react-router'
+import { createLazyFileRoute } from "@tanstack/react-router";
+import Image from "../components/Image";
 
-export const Route = createLazyFileRoute('/')({
+export const Route = createLazyFileRoute("/")({
   component: Index,
-})
+});
 
 function Index() {
   return (
     <div>
-      
+      <Image
+        name="banner.webp"
+        alt="Coffee Convention"
+        height={window.innerHeight / 2}
+        width={window.innerWidth}
+      />
     </div>
-  )
+  );
 }
