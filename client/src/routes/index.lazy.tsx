@@ -14,6 +14,60 @@ function Index() {
         height={window.innerHeight / 2}
         width={window.innerWidth}
       />
+      <Image
+        name="banner.webp"
+        alt="Coffee Convention"
+        height={window.innerHeight / 2}
+        width={window.innerWidth}
+      />
+      <Image
+        name="banner.webp"
+        alt="Coffee Convention"
+        height={window.innerHeight / 2}
+        width={window.innerWidth}
+      />
+      <Image
+        name="banner.webp"
+        alt="Coffee Convention"
+        height={window.innerHeight / 2}
+        width={window.innerWidth}
+      />
+      <Image
+        name="banner.webp"
+        alt="Coffee Convention"
+        height={window.innerHeight / 2}
+        width={window.innerWidth}
+      />
+      <Image
+        name="banner.webp"
+        alt="Coffee Convention"
+        height={window.innerHeight / 2}
+        width={window.innerWidth}
+      />
+      <Image
+        name="banner.webp"
+        alt="Coffee Convention"
+        height={window.innerHeight / 2}
+        width={window.innerWidth}
+      />
+      <Image
+        name="banner.webp"
+        alt="Coffee Convention"
+        height={window.innerHeight / 2}
+        width={window.innerWidth}
+      />
+      <Image
+        name="banner.webp"
+        alt="Coffee Convention"
+        height={window.innerHeight / 2}
+        width={window.innerWidth}
+      />
+      <Image
+        name="banner.webp"
+        alt="Coffee Convention"
+        height={window.innerHeight / 2}
+        width={window.innerWidth}
+      />
     </div>
   );
 }
