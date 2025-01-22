@@ -1,4 +1,6 @@
 import { useState, useEffect, useRef } from "react";
+import ImageLoader from "./ImageLoader";
+import useImageSize from "../hooks/useImgSize";
 
 type ImageProps = {
   name: string;
@@ -9,8 +11,10 @@ type ImageProps = {
 
 function Image({ name, alt, height, width }: ImageProps) {
   const [imgSrc, setImgSrc] = useState("");
-  const [imgSize, setImgSize] = useState({ height: height, width: width });
+  const [isImgLoaded, setIsImgLoaded] = useState(false);
+  const [loaderIsRemoved, setLoaderIsRemoved] = useState(false);
   const img = useRef(null);
+  const imgSize = useImageSize(height, width);
 
   const fetchImgOnObserveCallback = async (
     entries: IntersectionObserverEntry[]
@@ -54,29 +58,29 @@ function Image({ name, alt, height, width }: ImageProps) {
     };
   }, []);
 
-  const handleImgSize = () => {
-    setImgSize({
-      height: window.innerHeight / 2,
-      width: window.innerWidth,
-    });
-  };
-  useEffect(() => {
-    window.addEventListener("resize", handleImgSize);
-
-    return () => window.removeEventListener("resize", handleImgSize);
-  }, []);
 
   return (
-    <>
+    <div ref={img} style={{ position: "relative" }}>
       <img
-        src={imgSrc ? imgSrc : "./logo.webp"}
+        src={imgSrc}
         alt={alt}
         height={imgSize.height}
         width={imgSize.width}
+        onLoad={() => {
+          setIsImgLoaded(true);
+        }}
         loading="lazy"
-        ref={img}
       />
-    </>
+      {!loaderIsRemoved && (
+        <ImageLoader
+          height={height}
+          width={width}
+          alt="Image Placeholder"
+          isImgLoaded={isImgLoaded}
+          setLoaderIsRemoved={setLoaderIsRemoved}
+        />
+      )}
+    </div>
   );
 }
 

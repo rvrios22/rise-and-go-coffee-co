@@ -1,18 +1,24 @@
-import React from "react";
 import { Link } from "@tanstack/react-router";
+import "../css/navbar.css";
 
 function Navbar() {
   return (
     <>
-      <div>
+      <div className="navbar-left-flex">
         <Link to="/">
-          <img src="./logo.webp" alt="Company Logo" height="150" />
+          <img src="./logo.webp" alt="Company Logo" height="125" />
         </Link>
-        <Link to="/about">ABOUT</Link>
-        <Link to="/shop">SHOP COFFEES</Link>
+        <div className="navbar-link-container">
+          <Link to="/about">
+            <p className="link navbar-link">ABOUT</p>
+          </Link>
+          <Link to="/shop">
+            <p className="link navbar-link">SHOP</p>
+          </Link>
+        </div>
       </div>
-      <div>
-        <img src="./cart.svg" alt="Shopping Cart" height="50" />
+      <div className="navbar-right-flex">
+        <img src="./cart.svg" alt="Shopping Cart" height="30" />
       </div>
     </>
   );

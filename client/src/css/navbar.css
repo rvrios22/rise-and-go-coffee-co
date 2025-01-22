@@ -6,4 +6,19 @@ nav {
     justify-content: space-between;
     align-items: center;
     border-bottom: 1px solid black;
+    z-index: 2;
+}
+
+.navbar-left-flex {
+    position: relative;
+}
+
+.navbar-link-container {
+    position: absolute;
+    top: 49%;
+    left: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1em;
+    font-size: 1.125em;
 }
