@@ -9,7 +9,7 @@ const useImageSize = (initialHeight: number, initialWidth: number) => {
   useEffect(() => {
     const handleImgSize = () => {
       setImgSize({
-        height: window.innerHeight / 2,
+        height: window.innerHeight / 1.5,
         width: window.innerWidth,
       });
     };

@@ -38,6 +38,12 @@ button, input, label {
   line-height: 1.1;
 }
 
+/* remove margin from headings and p elements */
+h1, h2, h3, h4,
+button, input, label, p {
+  margin: 0;
+}
+
 /* Balance text wrapping on headings */
 h1, h2,
 h3, h4 {

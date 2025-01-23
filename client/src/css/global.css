@@ -1,3 +1,8 @@
+/* roboto */
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap");
+/* lato */
+@import url("https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap");
+
 a {
     text-decoration: none;
     cursor: pointer;
@@ -10,3 +15,45 @@ a:visited {
 img {
     object-fit: cover;
 }
+
+.roboto {
+    font-family: 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+}
+
+.lato {
+    font-family: 'Lato', 'Helvetica', 'Arial', sans-serif;
+}
+
+.header {
+    font-family: 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+    font-size: clamp(2rem, 4.5vw, 4.5rem);
+    text-align: center;
+    text-wrap: pretty;
+    
+}
+
+.general-text {
+    font-family: 'Lato', 'Helvetica', 'Arial', sans-serif;
+    text-align: center;
+    text-wrap: pretty;
+    font-size: clamp(1rem, 2vw, 1.5rem);
+    width: 90%;
+    margin: 0 auto;
+
+}
+
+.gradient-text {
+    /* -webkit-text-stroke: 1px black; */
+    paint-order: stroke fill;
+    font-weight: bold;
+    background: linear-gradient(to top, #b7410e, #e7c571 75%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-rendering: optimizeLegibility;
+}
+/* 
+.outline {
+    paint-order: stroke fill;
+    -webkit-text-stroke: 1px black;
+} */
