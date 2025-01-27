@@ -1,6 +1,7 @@
 import { createLazyFileRoute, Link } from "@tanstack/react-router";
 import Image from "../components/Image";
 import "../css/index.css";
+import BestSellerCarousel from "../components/carousel/BestSellerCarousel";
 export const Route = createLazyFileRoute("/")({
   component: Index,
 });
@@ -35,6 +36,7 @@ function Index() {
           fresh roasted coffee to your store (change as needed)
         </p>
       </div>
+      <BestSellerCarousel />
     </div>
   );
 }
