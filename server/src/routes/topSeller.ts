@@ -5,7 +5,6 @@ import { findItemQuantaties, getMostPopularItems } from "../helpers/topSellers";
 
 router.get('/', async (req, res, next) => {
     try {
-
         const response = await squareClient.orders.search({
             locationIds: [
                 // rise and go coffee local id
@@ -17,6 +16,13 @@ router.get('/', async (req, res, next) => {
         const orders = response.orders
         const itemTotals = findItemQuantaties(orders)
         const popularItems = getMostPopularItems(itemTotals)
+
+        const search = await squareClient.catalog.batchGet({
+            objectIds: [
+                'AIXNJRGOSCZ3ZSX6AZFBGMG7'
+            ],
+        })
+        console.log(search)
         res.json(popularItems)
     } catch (err) {
         next(err)

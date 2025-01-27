@@ -1,25 +1,27 @@
 export const findItemQuantaties = (orders: any) => {
-    const itemTotals: Record<string, number> = {}
+    const itemInfo: Record<string, {id: string, quantity: number}> = {}
 
     orders.forEach((order: any) => {
         const lineItems = order.lineItems[0]
-        console.log(lineItems)
         if (!lineItems) return
 
         const itemName: string = lineItems.name
         const itemQuantity: string = lineItems.quantity
+        const catalogObjectId: string = lineItems.catalogObjectId
 
-        if(itemTotals[itemName]) {
-            itemTotals[itemName] += parseInt(itemQuantity)
+        if(itemInfo[itemName]) {
+            itemInfo[itemName].quantity += parseInt(itemQuantity)
         } else {
-            itemTotals[itemName] = parseInt(itemQuantity)
+            itemInfo[itemName] = {id: catalogObjectId, quantity: parseInt(itemQuantity)}
         }
     })
-    return itemTotals
+    return itemInfo
 }
 
-export const getMostPopularItems = (itemTotals: Record<string, number>) => {
-    return Object.entries(itemTotals)
-        .sort((a, b) => b[1] - a[1])
-        .map(([name, quantity]) => ({ name, quantity }))
+ export const getMostPopularItems = (
+    itemInfo: Record<string, {id: string, quantity: number}>
+) => {
+    return Object.entries(itemInfo)
+        .sort(([, a], [, b]) => b.quantity - a.quantity)
+        .map(([name, {id, quantity}]) => ({ name, catalogObjectId: id, quantity }))
 }
