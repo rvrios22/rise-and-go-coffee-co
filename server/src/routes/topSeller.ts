@@ -1,7 +1,8 @@
 import Express from "express";
 const router = Express.Router()
 import squareClient from '../squareClient'
-import { findItemQuantaties, getMostPopularItems } from "../helpers/topSellers";
+import { findItemQuantaties, formatPrice, sortMostPopularItems } from "../helpers/topSellers";
+import { ExtendedCatalogObject } from "../types/squareExtensions";
 
 router.get('/', async (req, res, next) => {
     try {
@@ -9,21 +10,33 @@ router.get('/', async (req, res, next) => {
             locationIds: [
                 // rise and go coffee local id
                 'DVTPR8QN487NE',
-                // 'LTSX6G4NH851C'
             ],
             // returnEntries: true
         })
         const orders = response.orders
         const itemTotals = findItemQuantaties(orders)
-        const popularItems = getMostPopularItems(itemTotals)
+        const popularItems = sortMostPopularItems(itemTotals)
 
-        const search = await squareClient.catalog.batchGet({
+
+        const searchResults = await squareClient.catalog.batchGet({
             objectIds: [
-                'AIXNJRGOSCZ3ZSX6AZFBGMG7'
+                popularItems[0].catalogObjectId,
+                popularItems[1].catalogObjectId,
+                popularItems[2].catalogObjectId,
+                popularItems[3].catalogObjectId,
             ],
         })
-        console.log(search)
-        res.json(popularItems)
+        const popularItemsAndPricing = searchResults.objects?.map((obj, idx) => {
+            const extendedObj = obj as ExtendedCatalogObject
+            const formattedPrice = formatPrice(extendedObj.itemVariationData?.priceMoney)
+            return {
+                formattedPrice,
+                popularItems: popularItems[idx]
+                
+            }
+        })
+
+        res.json(popularItemsAndPricing)
     } catch (err) {
         next(err)
     }
