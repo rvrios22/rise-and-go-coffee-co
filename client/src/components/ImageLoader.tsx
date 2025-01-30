@@ -1,13 +1,6 @@
 import React from "react";
 import useImageSize from "../hooks/useImgSize";
-
-type ImageLoaderProps = {
-  alt: string;
-  height: number;
-  width: number;
-  isImgLoaded: boolean;
-  setLoaderIsRemoved: React.Dispatch<React.SetStateAction<boolean>>;
-};
+import type { ImageLoader } from "../types/ImageLoader";
 
 function ImageLoader({
   alt,
@@ -15,7 +8,7 @@ function ImageLoader({
   width,
   isImgLoaded,
   setLoaderIsRemoved,
-}: ImageLoaderProps) {
+}: ImageLoader) {
   const imgSize = useImageSize(height, width);
 
   const style: React.CSSProperties = {

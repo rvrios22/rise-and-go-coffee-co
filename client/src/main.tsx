@@ -1,4 +1,3 @@
-import { StrictMode } from "react";
 import ReactDOM from "react-dom/client";
 import { RouterProvider, createRouter } from "@tanstack/react-router";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
@@ -31,9 +30,9 @@ const loadingScreen = document.getElementById("loading-screen");
 if (!rootElement.innerHTML) {
   const root = ReactDOM.createRoot(rootElement);
   root.render(
-    <StrictMode>
+    <QueryClientProvider client={queryCLient}>
       <RouterProvider router={router} />
-    </StrictMode>
+    </QueryClientProvider>
   );
 }
 

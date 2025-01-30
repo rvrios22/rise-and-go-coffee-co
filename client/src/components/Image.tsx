@@ -1,15 +1,10 @@
 import { useState, useEffect, useRef } from "react";
 import ImageLoader from "./ImageLoader";
 import useImageSize from "../hooks/useImgSize";
+import type { Image } from "../types/Image";
 
-type ImageProps = {
-  name: string;
-  alt: string;
-  height: number;
-  width: number;
-};
 
-function Image({ name, alt, height, width }: ImageProps) {
+function Image({ name, alt, height, width }: Image) {
   const [imgSrc, setImgSrc] = useState("");
   const [isImgLoaded, setIsImgLoaded] = useState(false);
   const [loaderIsRemoved, setLoaderIsRemoved] = useState(false);
