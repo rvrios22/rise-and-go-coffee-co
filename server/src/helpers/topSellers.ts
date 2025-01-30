@@ -1,3 +1,6 @@
+import { BatchGetCatalogObjectsResponse } from "square/api"
+import { ExtendedCatalogObject } from "../types/squareExtensions"
+
 export const findItemQuantaties = (orders: any) => {
     const itemInfo: Record<string, { id: string, quantity: number }> = {}
 
@@ -19,14 +22,13 @@ export const findItemQuantaties = (orders: any) => {
     return itemInfo
 }
 
-export const sortMostPopularItems = (
-    itemInfo: Record<string, { id: string, quantity: number }>
-) => {
+export const sortMostPopularItems = (itemInfo: Record<string, { id: string, quantity: number }>) => {
     return Object.entries(itemInfo)
         .sort(([, a], [, b]) => b.quantity - a.quantity)
         .map(([name, { id, quantity }]) => ({ name, catalogObjectId: id, quantity }))
 }
 
+//formatPrice is called directly from getPopularItemsandPricing helper
 export const formatPrice = (priceMoney?: { amount: bigint, currency: string }) => {
     if (!priceMoney) return null
     const formattedAmount = (Number(priceMoney.amount) / 100).toFixed(2)
@@ -34,4 +36,17 @@ export const formatPrice = (priceMoney?: { amount: bigint, currency: string }) =
         amount: formattedAmount,
         currency: priceMoney.currency
     }
+}
+
+export const getPopularItemsAndPricing = (searchResults: BatchGetCatalogObjectsResponse, popularItems: { name: string, catalogObjectId: string, quantity: number }[]) => {
+    return searchResults.objects?.map((obj) => {
+        const extendedObj = obj as ExtendedCatalogObject
+        const formattedPrice = formatPrice(extendedObj.itemVariationData?.priceMoney)
+        const popularItem = popularItems.find((item) => item.catalogObjectId === extendedObj.id)
+        if (!popularItem) return null
+        if (!formattedPrice) return null
+        const { name, catalogObjectId } = popularItem
+        const { amount } = formattedPrice
+        return { name, catalogObjectId, amount }
+    }).filter(Boolean)
 }
