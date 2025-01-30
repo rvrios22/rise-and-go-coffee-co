@@ -45,8 +45,8 @@ export const getPopularItemsAndPricing = (searchResults: BatchGetCatalogObjectsR
         const popularItem = popularItems.find((item) => item.catalogObjectId === extendedObj.id)
         if (!popularItem) return null
         if (!formattedPrice) return null
-        const { name, catalogObjectId } = popularItem
+        const { name } = popularItem
         const { amount } = formattedPrice
-        return { name, catalogObjectId, amount }
+        return { name, id: extendedObj.id, amount }
     }).filter(Boolean)
 }
