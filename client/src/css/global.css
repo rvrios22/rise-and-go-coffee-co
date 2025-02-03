@@ -16,6 +16,10 @@ img {
     object-fit: cover;
 }
 
+figure {
+    margin: 0;
+}
+
 .roboto {
     font-family: 'Roboto', 'Helvetica Neue', Arial, sans-serif;
 }
@@ -26,7 +30,7 @@ img {
 
 .header {
     font-family: 'Roboto', 'Helvetica Neue', Arial, sans-serif;
-    font-size: clamp(2rem, 4.5vw, 4.5rem);
+    font-size: clamp(2rem, 3.5vw, 4rem);
     text-align: center;
     text-wrap: pretty;
     

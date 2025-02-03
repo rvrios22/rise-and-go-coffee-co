@@ -12,33 +12,33 @@ header {
 }
 
 .shadow {
-    color: #fff;
+    color: rgb(255, 255, 255);
     text-shadow:
-        2px 2px 0 #000,
-        -2px 2px 0 #000,
-        -2px -2px 0 #000,
-        2px -2px 0 #000;
+        1px 1px 0 #000,
+        -1px 1px 0 #000,
+        -1px -1px 0 #000,
+        1px -1px 0 #000;
 
 }
 
 .banner-header {
-    font-size: clamp(2.5rem, 5vw, 4.5rem);
+    font-size: clamp(2.5rem, 4.5vw, 4.25rem);
     font-weight: 700;
 }
 
 .banner-sub-header {
-    font-size: clamp(1rem, 2.5vw, 2rem);
+    font-size: clamp(1rem, 2vw, 1.75rem);
     font-weight: 400;
 }
 
 .shop-button {
     all: unset;
     border: 1px solid black;
-    padding: .5em 3em;
+    padding: .25em 2.5em;
     border-radius: 100px;
     background-color: black;
     text-align: center;
     margin: 1em auto;
-    font-size: clamp(1rem, 1.5vw, 1.5rem);
+    font-size: clamp(1rem, 1.25vw, 1.5rem);
     cursor: pointer;
 }

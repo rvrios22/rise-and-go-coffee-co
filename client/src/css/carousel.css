@@ -1,0 +1,29 @@
+.carousel-container {
+  overflow: hidden;
+  white-space: nowrap;
+  width: 100%;
+  position: relative;
+}
+
+.carousel-track {
+  overflow: hidden;
+  display: flex;
+  gap: 2rem;
+  width: max-content;
+  animation: scrollLeft 25s linear infinite;
+}
+
+.carousel-item {
+  flex: 0 0 auto;
+  text-align: center;
+}
+
+@keyframes scrollLeft {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(-50%);
+  }
+}
