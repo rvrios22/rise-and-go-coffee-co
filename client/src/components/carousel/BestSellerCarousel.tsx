@@ -14,7 +14,8 @@ const getTopSellers = async () => {
 };
 
 function BestSellerCarousel() {
-  const carouselRef = useCallback((carousel: HTMLDivElement) => {
+  const carouselRef = useCallback((carousel: HTMLDivElement | null) => {
+    if(!carousel) return
     const cloneItems = () => {
       const items = Array.from(carousel.children) as HTMLDivElement[];
 

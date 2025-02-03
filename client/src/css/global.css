@@ -33,7 +33,7 @@ figure {
     font-size: clamp(2rem, 3.5vw, 4rem);
     text-align: center;
     text-wrap: pretty;
-    
+    margin: .5em auto .25em;    
 }
 
 .general-text {
@@ -56,8 +56,36 @@ figure {
     -webkit-text-fill-color: transparent;
     text-rendering: optimizeLegibility;
 }
-/* 
-.outline {
-    paint-order: stroke fill;
-    -webkit-text-stroke: 1px black;
-} */
+
+header {
+    position: relative;
+}
+
+.banner-text {
+    position: absolute;
+    bottom: 0;
+    height: 60%;
+    color: white;
+    margin-left: 2.5%;
+    text-wrap: pretty;
+}
+
+.shadow {
+    color: rgb(255, 255, 255);
+    text-shadow:
+        1px 1px 0 #000,
+        -1px 1px 0 #000,
+        -1px -1px 0 #000,
+        1px -1px 0 #000;
+
+}
+
+.banner-header {
+    font-size: clamp(2.5rem, 4.5vw, 4.25rem);
+    font-weight: 700;
+}
+
+.banner-sub-header {
+    font-size: clamp(1rem, 2vw, 1.75rem);
+    font-weight: 400;
+}
