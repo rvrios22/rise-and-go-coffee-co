@@ -2,6 +2,7 @@ import express, { NextFunction, Request, Response } from 'express';
 import path from 'path';
 import image from './routes/image'
 import topSeller from './routes/topSeller'
+import shop from './routes/shop'
 import squareErrorHandler from './middleware/squareErrorHandler';
 
 const app = express();
@@ -11,6 +12,7 @@ app.use(express.static(path.join(__dirname, '..', 'public')))
 app.use(squareErrorHandler)
 app.use('/api/image', image)
 app.use('/api/topSeller', topSeller)
+app.use('/api/shop', shop)
 
 app.get('/', (req: Request, res: Response) => {
   res.send("Hello from TypeScript and Express!");
