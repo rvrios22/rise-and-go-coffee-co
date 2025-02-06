@@ -13,6 +13,8 @@ function CarouselItem({ name, amount }: TopSeller) {
       <Image
         height={window.innerHeight / 6}
         width={window.innerWidth / 3}
+        heightDivisor={6}
+        widthDivisor={3}
         name=""
         alt={name}
       />

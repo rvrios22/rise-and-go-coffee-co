@@ -32,8 +32,13 @@ function Index() {
           <span className="gradient-text outline">Roast Master</span>
         </h2>
         <p className="general-text">
-          Known for our work with Koffi in the Coachella Valley, now bringing
-          fresh roasted coffee to your store (change as needed)
+          We are a Coachella Valley based coffee company that is passionate
+          about the coffee culture and bringing delicious coffee flavors to our
+          community. Our beans are specifically sourced from fair trade farms
+          that produce great quality beans. Roasting coffee beans to perfection
+          is what we specialize in, our master roaster has over 10 years coffee
+          roasting experience. We are looking forward to everyone getting a
+          taste of our different specialty roasts one sip at a time.
         </p>
       </div>
       <BestSellerCarousel />

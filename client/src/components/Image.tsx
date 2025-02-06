@@ -3,13 +3,24 @@ import ImageLoader from "./ImageLoader";
 import useImageSize from "../hooks/useImgSize";
 import type { Image } from "../types/Image";
 
-
-function Image({ name, alt, height, width }: Image) {
+function Image({
+  name,
+  alt,
+  height,
+  width,
+  heightDivisor = 1.5,
+  widthDivisor = 1,
+}: Image) {
   const [imgSrc, setImgSrc] = useState("");
   const [isImgLoaded, setIsImgLoaded] = useState(false);
   const [loaderIsRemoved, setLoaderIsRemoved] = useState(false);
   const img = useRef(null);
-  const imgSize = useImageSize(height, width);
+  const imgSize = useImageSize(
+    height,
+    width,
+    heightDivisor,
+    widthDivisor
+  );
 
   const fetchImgOnObserveCallback = async (
     entries: IntersectionObserverEntry[]
@@ -53,7 +64,6 @@ function Image({ name, alt, height, width }: Image) {
     };
   }, []);
 
-
   return (
     <div ref={img} style={{ position: "relative" }}>
       <img
@@ -70,6 +80,8 @@ function Image({ name, alt, height, width }: Image) {
         <ImageLoader
           height={height}
           width={width}
+          heightDivisor={heightDivisor}
+          widthDivisor={widthDivisor}
           alt="Image Placeholder"
           isImgLoaded={isImgLoaded}
           setLoaderIsRemoved={setLoaderIsRemoved}

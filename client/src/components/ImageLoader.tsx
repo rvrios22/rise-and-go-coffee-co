@@ -7,9 +7,11 @@ function ImageLoader({
   height,
   width,
   isImgLoaded,
+  heightDivisor = 1.5,
+  widthDivisor = 1,
   setLoaderIsRemoved,
 }: ImageLoader) {
-  const imgSize = useImageSize(height, width);
+  const imgSize = useImageSize(height, width, heightDivisor, widthDivisor);
 
   const style: React.CSSProperties = {
     background: "rgba(255,255,255,.28)",
@@ -19,6 +21,10 @@ function ImageLoader({
     WebkitBackdropFilter: "blur(8.1px)",
     border: "1px solid rgba(255,255,255,.5)",
     position: "absolute",
+    top: "50%",
+    left: "50%",
+    transform: "translate(-50%, -50%)",
+    objectFit: "cover",
     height: imgSize.height,
     width: imgSize.width,
     animation: `${isImgLoaded ? "fadeOut .75s forwards" : ""}`,

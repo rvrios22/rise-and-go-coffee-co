@@ -3,4 +3,6 @@ export type Image = {
     alt: string;
     height: number;
     width: number;
+    heightDivisor?: number | undefined;
+    widthDivisor?: number | undefined
   };

@@ -1,6 +1,11 @@
 import { useState, useEffect } from "react";
 
-const useImageSize = (initialHeight: number, initialWidth: number) => {
+const useImageSize = (
+  initialHeight: number,
+  initialWidth: number,
+  heightDivisor: number,
+  widthDivisor: number
+) => {
   const [imgSize, setImgSize] = useState({
     height: initialHeight,
     width: initialWidth,
@@ -9,8 +14,8 @@ const useImageSize = (initialHeight: number, initialWidth: number) => {
   useEffect(() => {
     const handleImgSize = () => {
       setImgSize({
-        height: window.innerHeight / 1.5,
-        width: window.innerWidth,
+        height: window.innerHeight / heightDivisor,
+        width: window.innerWidth / widthDivisor,
       });
     };
 
