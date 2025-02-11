@@ -9,12 +9,14 @@ export const Route = createLazyFileRoute("/")({
 function Index() {
   return (
     <div>
-      <header>
+      <header className="index-header">
         <Image
           name="banner.jpg"
           alt="banner"
           height={window.innerHeight / 1.5}
           width={window.innerWidth}
+          heightDivisor={1.5}
+          widthDivisor={1}
         />
         <div className="banner-text">
           <h1 className="shadow roboto banner-header">RISE & GO COFFEE CO.</h1>

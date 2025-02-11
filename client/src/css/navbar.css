@@ -6,7 +6,7 @@ nav {
     justify-content: space-between;
     align-items: center;
     border-bottom: 1px solid black;
-    z-index: 2;
+    z-index: 9999;
 }
 
 .navbar-left-flex {
