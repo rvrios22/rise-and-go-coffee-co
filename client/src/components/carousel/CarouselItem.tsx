@@ -4,12 +4,6 @@ import Image from "../Image";
 function CarouselItem({ name, amount }: TopSeller) {
   return (
     <article>
-      {/* <img
-        src="logo.webp"
-        alt=""
-        height={window.innerHeight / 6}
-        width={window.innerWidth / 3}
-      /> */}
       <Image
         height={window.innerHeight / 6}
         width={window.innerWidth / 3}

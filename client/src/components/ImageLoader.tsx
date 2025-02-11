@@ -1,61 +1,21 @@
-import React from "react";
-import useImageSize from "../hooks/useImgSize";
+import "../css/loader.css";
 import type { ImageLoader } from "../types/ImageLoader";
-
-function ImageLoader({
-  alt,
-  height,
-  width,
-  isImgLoaded,
-  heightDivisor = 1.5,
-  widthDivisor = 1,
-  setLoaderIsRemoved,
-}: ImageLoader) {
-  const imgSize = useImageSize(height, width, heightDivisor, widthDivisor);
-
-  const style: React.CSSProperties = {
-    background: "rgba(255,255,255,.28)",
-    borderRadius: "16px",
-    boxShadow: "0 4px 30px rgba(0,0,0,.1)",
-    backdropFilter: "blur(8.1px)",
-    WebkitBackdropFilter: "blur(8.1px)",
-    border: "1px solid rgba(255,255,255,.5)",
-    position: "absolute",
-    top: "50%",
-    left: "50%",
-    transform: "translate(-50%, -50%)",
-    objectFit: "cover",
-    height: imgSize.height,
-    width: imgSize.width,
-    animation: `${isImgLoaded ? "fadeOut .75s forwards" : ""}`,
+function ImageLoader({ height, width }: ImageLoader) {
+  const style = {
+    height: height,
+    width: width,
   };
-
-  const animationFadeOut = `
-    @keyframes fadeOut {
-        from {
-            opacity: 1;
-        }
-        to {
-        opacity: 0;
-        }
-    }
-  `;
-
   return (
-    <div
-      style={{ position: "absolute", top: 0 }}
-      onAnimationEnd={() => {
-        setLoaderIsRemoved(true);
-      }}
-    >
-      <style>{animationFadeOut}</style>
-      <div style={style}></div>
+    <div className="image-loader-container" style={style}>
+      <div
+        className="image-loader-spinner"
+        style={{ height: height / 2 }}
+      ></div>
       <img
-        src="./logo.webp"
-        height={imgSize.height}
-        width={imgSize.width}
-        alt={alt}
-        style={isImgLoaded ? { animation: "fadeOut .75s forwards" } : {}}
+        src="/logo.webp"
+        alt="Rise And Go Logo"
+        className="image-loader-image"
+        height={height / 3}
       />
     </div>
   );

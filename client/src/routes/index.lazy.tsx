@@ -11,7 +11,7 @@ function Index() {
     <div>
       <header>
         <Image
-          name="banner.webp"
+          name="banner.jpg"
           alt="banner"
           height={window.innerHeight / 1.5}
           width={window.innerWidth}

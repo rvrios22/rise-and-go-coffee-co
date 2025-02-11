@@ -1,0 +1,35 @@
+.image-loader-container {
+  justify-content: center;
+  align-items: center;
+}
+
+.image-loader-spinner {
+  aspect-ratio: 1;
+  border: 5px solid #ddd;
+  border-top: 5px solid #3498db;
+  border-radius: 50%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  animation: spin 1s linear infinite;
+  z-index: 1;
+}
+
+.image-loader-image {
+  aspect-ratio: 1;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+@keyframes spin {
+  from {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+
+  to {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+}

@@ -12,15 +12,8 @@ function Image({
   widthDivisor = 1,
 }: Image) {
   const [imgSrc, setImgSrc] = useState("");
-  const [isImgLoaded, setIsImgLoaded] = useState(false);
-  const [loaderIsRemoved, setLoaderIsRemoved] = useState(false);
   const img = useRef(null);
-  const imgSize = useImageSize(
-    height,
-    width,
-    heightDivisor,
-    widthDivisor
-  );
+  const imgSize = useImageSize(height, width, heightDivisor, widthDivisor);
 
   const fetchImgOnObserveCallback = async (
     entries: IntersectionObserverEntry[]
@@ -29,6 +22,9 @@ function Image({
       if (entry.isIntersecting) {
         try {
           const response = await fetch(`/api/image/${name}`);
+          if(!response.ok) {
+            throw new Error('Something went wrong')
+          }
           const blob = await response.blob();
           const blobURL = URL.createObjectURL(blob);
           setImgSrc(blobURL);
@@ -65,26 +61,24 @@ function Image({
   }, []);
 
   return (
-    <div ref={img} style={{ position: "relative" }}>
-      <img
-        src={imgSrc}
-        alt={alt}
-        height={imgSize.height}
-        width={imgSize.width}
-        onLoad={() => {
-          setIsImgLoaded(true);
-        }}
-        loading="lazy"
-      />
-      {!loaderIsRemoved && (
-        <ImageLoader
-          height={height}
-          width={width}
-          heightDivisor={heightDivisor}
-          widthDivisor={widthDivisor}
-          alt="Image Placeholder"
-          isImgLoaded={isImgLoaded}
-          setLoaderIsRemoved={setLoaderIsRemoved}
+    <div
+      ref={img}
+      className="image-component"
+      style={{
+        position: "relative",
+        height: `${imgSize.height}`,
+        width: `${imgSize.width}`,
+      }}
+    >
+      {!imgSrc ? (
+        <ImageLoader height={imgSize.height} width={imgSize.width} />
+      ) : (
+        <img
+          src={imgSrc}
+          alt={alt}
+          height={imgSize.height}
+          width={imgSize.width}
+          loading="lazy"
         />
       )}
     </div>

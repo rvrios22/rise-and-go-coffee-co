@@ -1,5 +1,30 @@
-.shop-item img {
-    margin: 1em auto 0;
-    border-radius: 10px;
-    object-fit: cover;
+.shop-container {
+    padding: 1em;
+}
+
+.shop-item .image-component * {
+    left: 22.75%;
+    margin: 0 auto;
+}
+
+@media (min-width: 800px) {
+    .shop-container {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1em;
+    }
+
+    .shop-item .image-component * {
+        left: 0;
+    }
+
+}
+@media (min-width: 1200px) {
+    .shop-container {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+    }
+
+    .shop-item .image-component * {
+    }
 }
