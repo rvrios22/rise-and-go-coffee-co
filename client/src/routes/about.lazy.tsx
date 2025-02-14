@@ -1,6 +1,6 @@
 import { createLazyFileRoute, Link } from "@tanstack/react-router";
 
-import Image from "../components/Image";
+import Image from "../components/image/Image";
 
 export const Route = createLazyFileRoute("/about")({
   component: About,

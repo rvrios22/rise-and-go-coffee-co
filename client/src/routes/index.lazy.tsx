@@ -1,5 +1,5 @@
 import { createLazyFileRoute, Link } from "@tanstack/react-router";
-import Image from "../components/Image";
+import Image from "../components/image/Image";
 import "../css/index.css";
 import BestSellerCarousel from "../components/carousel/BestSellerCarousel";
 export const Route = createLazyFileRoute("/")({

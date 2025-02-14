@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import ImageLoader from "./ImageLoader";
-import useImageSize from "../hooks/useImgSize";
-import type { Image } from "../types/Image";
+import useImageSize from "../../hooks/useImgSize";
+import type { Image } from "../../types/Image";
 
 function Image({
   name,
@@ -22,8 +22,8 @@ function Image({
       if (entry.isIntersecting) {
         try {
           const response = await fetch(`/api/image/${name}`);
-          if(!response.ok) {
-            throw new Error('Something went wrong')
+          if (!response.ok) {
+            throw new Error("Something went wrong");
           }
           const blob = await response.blob();
           const blobURL = URL.createObjectURL(blob);

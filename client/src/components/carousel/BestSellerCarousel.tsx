@@ -45,9 +45,9 @@ function BestSellerCarousel() {
       <div ref={carouselRef} className="carousel-track">
         {data.map((item: TopSeller) => (
           <CarouselItem
-            key={item.id}
+            key={item.catalogObjectId}
             name={item.name}
-            id={item.id}
+            catalogObjectId={item.catalogObjectId}
             amount={item.amount}
           />
         ))}

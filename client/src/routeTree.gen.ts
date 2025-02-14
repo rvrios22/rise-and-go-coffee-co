@@ -16,11 +16,18 @@ import { Route as rootRoute } from './routes/__root'
 
 // Create Virtual Routes
 
+const CartLazyImport = createFileRoute('/cart')()
 const AboutLazyImport = createFileRoute('/about')()
 const IndexLazyImport = createFileRoute('/')()
 const ShopIndexLazyImport = createFileRoute('/shop/')()
 
 // Create/Update Routes
+
+const CartLazyRoute = CartLazyImport.update({
+  id: '/cart',
+  path: '/cart',
+  getParentRoute: () => rootRoute,
+} as any).lazy(() => import('./routes/cart.lazy').then((d) => d.Route))
 
 const AboutLazyRoute = AboutLazyImport.update({
   id: '/about',
@@ -58,6 +65,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AboutLazyImport
       parentRoute: typeof rootRoute
     }
+    '/cart': {
+      id: '/cart'
+      path: '/cart'
+      fullPath: '/cart'
+      preLoaderRoute: typeof CartLazyImport
+      parentRoute: typeof rootRoute
+    }
     '/shop/': {
       id: '/shop/'
       path: '/shop'
@@ -73,12 +87,14 @@ declare module '@tanstack/react-router' {
 export interface FileRoutesByFullPath {
   '/': typeof IndexLazyRoute
   '/about': typeof AboutLazyRoute
+  '/cart': typeof CartLazyRoute
   '/shop': typeof ShopIndexLazyRoute
 }
 
 export interface FileRoutesByTo {
   '/': typeof IndexLazyRoute
   '/about': typeof AboutLazyRoute
+  '/cart': typeof CartLazyRoute
   '/shop': typeof ShopIndexLazyRoute
 }
 
@@ -86,27 +102,30 @@ export interface FileRoutesById {
   __root__: typeof rootRoute
   '/': typeof IndexLazyRoute
   '/about': typeof AboutLazyRoute
+  '/cart': typeof CartLazyRoute
   '/shop/': typeof ShopIndexLazyRoute
 }
 
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/about' | '/shop'
+  fullPaths: '/' | '/about' | '/cart' | '/shop'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/about' | '/shop'
-  id: '__root__' | '/' | '/about' | '/shop/'
+  to: '/' | '/about' | '/cart' | '/shop'
+  id: '__root__' | '/' | '/about' | '/cart' | '/shop/'
   fileRoutesById: FileRoutesById
 }
 
 export interface RootRouteChildren {
   IndexLazyRoute: typeof IndexLazyRoute
   AboutLazyRoute: typeof AboutLazyRoute
+  CartLazyRoute: typeof CartLazyRoute
   ShopIndexLazyRoute: typeof ShopIndexLazyRoute
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexLazyRoute: IndexLazyRoute,
   AboutLazyRoute: AboutLazyRoute,
+  CartLazyRoute: CartLazyRoute,
   ShopIndexLazyRoute: ShopIndexLazyRoute,
 }
 
@@ -122,6 +141,7 @@ export const routeTree = rootRoute
       "children": [
         "/",
         "/about",
+        "/cart",
         "/shop/"
       ]
     },
@@ -130,6 +150,9 @@ export const routeTree = rootRoute
     },
     "/about": {
       "filePath": "about.lazy.tsx"
+    },
+    "/cart": {
+      "filePath": "cart.lazy.tsx"
     },
     "/shop/": {
       "filePath": "shop/index.lazy.tsx"

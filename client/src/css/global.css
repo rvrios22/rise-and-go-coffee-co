@@ -20,6 +20,15 @@ figure {
     margin: 0;
 }
 
+menu, ul, li {
+    margin: 0;
+    padding: 0;
+}
+
+ li {
+    list-style: none;
+}
+
 .roboto {
     font-family: 'Roboto', 'Helvetica Neue', Arial, sans-serif;
 }

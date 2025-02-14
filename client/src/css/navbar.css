@@ -13,6 +13,11 @@ nav {
     position: relative;
 }
 
+.navbar-right-flex > img {
+    cursor: pointer;
+    margin-right: 1em;
+}
+
 .navbar-link-container {
     position: absolute;
     top: 49%;
@@ -22,3 +27,38 @@ nav {
     gap: 1em;
     font-size: 1.125em;
 }
+
+/* mobile navbar */
+.mobile-navbar-right-flex {
+    display: flex;
+    align-items: flex-start;
+    gap: 1em;
+}
+
+/* mobile sidebar */
+.mobile-sidebar-container {
+    position: absolute;
+    width: 80%;
+    height: 100dvh;
+    border: 1px solid black;
+    border-radius: 10px;
+    right: -10px;
+    top: 0;
+    background-color: rgba(255, 255, 255, 0.998);
+    display: flex;
+    justify-content: center;
+}
+
+.mobile-sidebar-container svg {
+    position: absolute;
+    top: 10px;
+    right: 20px;
+}
+
+.mobile-sidebar-container ul {
+    margin-top: 2em;
+    display: flex;
+    flex-direction: column;
+    gap: 2em;
+}
+

@@ -1,8 +1,8 @@
 import { createRootRoute, Outlet } from "@tanstack/react-router";
 import { TanStackRouterDevtools } from "@tanstack/router-devtools";
 import { useEffect, useState } from "react";
-import Navbar from "../components/Navbar";
-import MobileNavbar from "../components/MobileNavbar";
+import Navbar from "../components/navbar/Navbar";
+import MobileNavbar from "../components/navbar/MobileNavbar";
 import "../css/global.css";
 import "../css/reset.css";
 import "../css/navbar.css";

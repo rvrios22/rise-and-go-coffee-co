@@ -2,7 +2,7 @@ import { ShopItem } from "../../types/shopItem";
 import { fetchItems } from "../../helper/fetch";
 import { useQuery } from "@tanstack/react-query";
 import { createLazyFileRoute, Link } from "@tanstack/react-router";
-import Image from "../../components/Image";
+import Image from "../../components/image/Image";
 import "../../css/shop.css";
 import useScreenSize from "../../hooks/useScreenSize";
 
@@ -15,8 +15,7 @@ function ShopComponent() {
     queryKey: ["shop"],
     queryFn: () => fetchItems("/api/shop"),
   });
-  const screenSize = useScreenSize()
-  
+  const screenSize = useScreenSize();
 
   if (isPending) {
     return <span>Loading...</span>;
@@ -33,17 +32,19 @@ function ShopComponent() {
         {data.map((item: ShopItem) => (
           <article key={item.catagoryObjId} className="shop-item">
             <Link to={item.catagoryObjId}>
-              <Image
+              <img
+                src="logo.webp"
+                alt=""
                 width={window.innerWidth / 2}
                 height={window.innerHeight / 3}
-                heightDivisor={3}
-                widthDivisor={2}
-                name="banner.webp"
-                alt=""
+                className="shop-image"
               />
+            </Link>
+            <Link to={item.catagoryObjId}>
               <p className="general-text">{item.name}</p>
               <p className="general-text">${item.price}</p>
             </Link>
+            <button className="shop-button">ADD TO CART</button>
           </article>
         ))}
       </main>

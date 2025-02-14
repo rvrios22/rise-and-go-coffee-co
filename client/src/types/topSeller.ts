@@ -1,5 +1,5 @@
 export type TopSeller = {
     name: string;
-    id: string;
+    catalogObjectId: string;
     amount: string;
 };

@@ -1,5 +1,5 @@
-import "../css/loader.css";
-import type { ImageLoader } from "../types/ImageLoader";
+import "../../css/loader.css";
+import type { ImageLoader } from "../../types/ImageLoader";
 function ImageLoader({ height, width }: ImageLoader) {
   const style = {
     height: height,

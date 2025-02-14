@@ -1,19 +1,20 @@
+import { Link } from "@tanstack/react-router";
 import { TopSeller } from "../../types/topSeller";
-import Image from "../Image";
+import Image from "../image/Image";
 
-function CarouselItem({ name, amount }: TopSeller) {
+function CarouselItem({ name, amount, catalogObjectId }: TopSeller) {
   return (
     <article>
-      <Image
-        height={window.innerHeight / 6}
-        width={window.innerWidth / 3}
-        heightDivisor={6}
-        widthDivisor={3}
-        name=""
-        alt={name}
-      />
-      <p className="lato">{name}</p>
-      <p className="lato">${amount}</p>
+      <Link to={`/shop/${catalogObjectId}`}>
+        <img
+          src="logo.webp"
+          alt=""
+          height={window.innerHeight / 6}
+          width={window.innerWidth / 3}
+        />
+        <p className="lato">{name}</p>
+        <p className="lato">${amount}</p>
+      </Link>
     </article>
   );
 }
