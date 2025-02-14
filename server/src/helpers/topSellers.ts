@@ -2,8 +2,7 @@ import { BatchGetCatalogObjectsResponse } from "square/api"
 import { ExtendedCatalogObject } from "../types/squareExtensions"
 
 export const findItemQuantaties = (orders: any) => {
-    const itemInfo: Record<string, { id: string, quantity: number }> = {}
-
+    const itemInfo: Record<string, { catalogObjectId: string, quantity: number }> = {}
     orders.forEach((order: any) => {
         const lineItems = order.lineItems[0]
         //removes items from orders array if they dont have line item object or catalog object id
@@ -16,16 +15,16 @@ export const findItemQuantaties = (orders: any) => {
         if (itemInfo[itemName]) {
             itemInfo[itemName].quantity += parseInt(itemQuantity)
         } else {
-            itemInfo[itemName] = { id: catalogObjectId, quantity: parseInt(itemQuantity) }
+            itemInfo[itemName] = { catalogObjectId: catalogObjectId, quantity: parseInt(itemQuantity) }
         }
     })
     return itemInfo
 }
 
-export const sortMostPopularItems = (itemInfo: Record<string, { id: string, quantity: number }>) => {
+export const sortMostPopularItems = (itemInfo: Record<string, { catalogObjectId: string, quantity: number }>) => {
     return Object.entries(itemInfo)
         .sort(([, a], [, b]) => b.quantity - a.quantity)
-        .map(([name, { id, quantity }]) => ({ name, catalogObjectId: id, quantity }))
+        .map(([name, { catalogObjectId, quantity }]) => ({ name, catalogObjectId, quantity }))
 }
 
 //formatPrice is called directly from getPopularItemsandPricing helper
@@ -42,11 +41,12 @@ export const getPopularItemsAndPricing = (searchResults: BatchGetCatalogObjectsR
     return searchResults.objects?.map((obj) => {
         const extendedObj = obj as ExtendedCatalogObject
         const formattedPrice = formatPrice(extendedObj.itemVariationData?.priceMoney)
+        console.log(extendedObj)
         const popularItem = popularItems.find((item) => item.catalogObjectId === extendedObj.id)
         if (!popularItem) return null
         if (!formattedPrice) return null
-        const { name } = popularItem
+        const { name, catalogObjectId } = popularItem
         const { amount } = formattedPrice
-        return { name, id: extendedObj.id, amount }
+        return { name, catalogObjectId, amount }
     }).filter(Boolean)
 }

@@ -20,7 +20,6 @@ router.get('/', async (req, res, next) => {
         const orders = response.orders
         const itemTotals = findItemQuantaties(orders)
         const popularItems = sortMostPopularItems(itemTotals)
-
         const searchResults = await squareClient.catalog.batchGet({
             objectIds: [
                 popularItems[0].catalogObjectId,
